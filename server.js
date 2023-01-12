@@ -24,9 +24,10 @@ const fire_message_with_twilio = async (phone_number, course) => {
     console.log(e);
   }
 };
-const fire_notification_locally = async () => {
+async function fire_notification_locally(phoneNum, courseName) {
+  console.log(`${courseName} has a spot`);
   beep(6);
-};
+}
 const parseCourse = (courseString) => {
   res = [];
   for (let i = 0; i < courseString.length; i++) {
@@ -54,6 +55,8 @@ const sendNotificationToAllEntries = async () => {
     });
     if (res.data.hasSpot) {
       fire_notification_locally(phoneNum, courseName + courseCode);
+    } else {
+      console.log(courseName + courseCode + " has no spot currently");
     }
   }
 };
